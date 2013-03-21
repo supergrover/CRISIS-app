@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CRISIS</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="crisis_ip_address">CRISIS IP Address</string>
+    <string name="connect">Connect</string>
+    <string name="connect_cancel">Cancel</string>
+    <string name="title_activity_control">ControlActivity</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="shutdown">Shutdown</string>
+    <string name="program_tour">Tour</string>
+    <string name="program_navigate">Navigate</string>
+    <string name="program_inspect">Inspect</string>
+    <string name="title_activity_program_tour">ProgramTour</string>
+    <string name="start_program">Start program</string>
+    <string name="first_direction_is">First direction is</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="title_activity_program_navigate">ProgramNavigate</string>
+    <string name="program_navigate_add_step">Add step</string>
+
+</resources>

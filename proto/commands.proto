@@ -1,0 +1,31 @@
+package com.flarb.crisis.communication;
+
+message Program {
+    enum ProgramType {
+        Tour = 1;
+        Navigate = 2;
+        FindDamaged = 3;
+    };
+
+    required ProgramType type = 1;
+    enum Direction {
+        Left = 1;
+        Right = 2;
+    };
+
+    message Step {
+        required Direction direction = 1;
+        required int32 nth = 2;
+    }
+    repeated Step steps = 2;
+};
+
+message Command {
+    enum CommandType {
+        Shutdown = 1;
+        StartProgram = 2;
+    };
+
+    required CommandType command = 1;
+    optional Program program = 2;
+};
