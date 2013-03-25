@@ -8,24 +8,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ConnectActivity" >
+    tools:context=".OverviewActivity" >
 
-    <EditText
-        android:id="@+id/connect_ip"
+    <nl.flarb.crisis.CRISISEnvironmentDisplay
+        android:id="@+id/cRISISEnvironmentDisplay1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="0123456789."
-        android:ems="10"
-        android:hint="CRISIS IP Address"
-        android:inputType="numberDecimal" >
+        android:layout_height="0dp"
+        android:layout_weight="0.38" />
 
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/connect_button"
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/footer"
         android:layout_height="wrap_content"
-        android:text="Connect" />
+        android:layout_marginBottom="0dp"
+        layout="@layout/footer" />
 
 </LinearLayout>

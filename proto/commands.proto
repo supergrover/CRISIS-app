@@ -1,4 +1,4 @@
-package com.flarb.crisis.communication;
+package nl.flarb.crisis.communication;
 
 message Program {
     enum ProgramType {
@@ -20,12 +20,39 @@ message Program {
     repeated Step steps = 2;
 };
 
+message Position {
+    required uint32 x = 1;
+    required uint32 y = 2;
+};
+
+message Environment {
+    message Element {
+        enum Type {
+            Sunflower = 1;
+            DeadSunflower = 2;
+            Weed = 3;
+        };
+        required Type type = 1;
+        required Position pos = 2;
+        optional float size = 3;
+    }
+    repeated Element elements = 1;
+    required Position crisis = 2;
+};
+
+message Header {
+    required fixed32 size = 1;
+};
+
 message Command {
-    enum CommandType {
+    enum Type {
         Shutdown = 1;
         StartProgram = 2;
+        Environment = 3;
+        RestartROS = 4;
     };
 
-    required CommandType command = 1;
+    required Type type = 1;
     optional Program program = 2;
+    optional Environment env = 3;
 };
