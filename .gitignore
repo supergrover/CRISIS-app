@@ -1,2 +1,7 @@
 *.jar
 *.apk
+*.pyc
+bin/
+gen/
+.settings
+.metadata
