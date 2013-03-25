@@ -21,8 +21,8 @@ message Program {
 };
 
 message Position {
-    required uint32 x = 1;
-    required uint32 y = 2;
+    required float x = 1;
+    required float y = 2;
 };
 
 message Environment {
