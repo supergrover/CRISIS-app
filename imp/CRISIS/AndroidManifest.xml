@@ -3,9 +3,8 @@
     package="nl.flarb.crisis"
     android:versionCode="1"
     android:versionName="1.0" >
-    
-    <uses-permission
-        android:name="android.permission.INTERNET">
+
+    <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
 
     <uses-sdk
@@ -30,11 +29,48 @@
             android:name="nl.flarb.crisis.OverviewActivity"
             android:label="@string/title_activity_overview" >
         </activity>
-        
+
         <service
             android:name="nl.flarb.crisis.communication.ConnectionService"
-            android:label="Connection service">
+            android:label="Connection service" >
         </service>
+
+        <activity
+            android:name="nl.flarb.crisis.programs.ProgramActivity"
+            android:label="@string/title_activity_program" >
+        </activity>
+        <activity
+            android:name="nl.flarb.crisis.programs.ProgramTourActivity"
+            android:label="@string/title_activity_program_tour"
+            android:parentActivityName="nl.flarb.crisis.CRISISActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.flarb.crisis.CRISISActivity" />
+        </activity>
+        <activity
+            android:name="nl.flarb.crisis.programs.ProgramNewActivity"
+            android:label="@string/title_activity_program_new"
+            android:parentActivityName="nl.flarb.crisis.CRISISOnlineActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.flarb.crisis.CRISISOnlineActivity" />
+        </activity>
+        <activity
+            android:name="nl.flarb.crisis.programs.ProgramNavigateActivity"
+            android:label="@string/title_activity_program_navigate"
+            android:parentActivityName="nl.flarb.crisis.CRISISOnlineActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.flarb.crisis.CRISISOnlineActivity" />
+        </activity>
+        <activity
+            android:name="nl.flarb.crisis.programs.ProgramFindDamagedActivity"
+            android:label="@string/title_activity_program_find_damaged"
+            android:parentActivityName="nl.flarb.crisis.CRISISOnlineActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.flarb.crisis.CRISISOnlineActivity" />
+        </activity>
     </application>
 
 </manifest>

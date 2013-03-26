@@ -3,6 +3,8 @@ package nl.flarb.crisis.communication;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+
+import nl.flarb.crisis.ConnectActivity;
 import nl.flarb.crisis.OverviewActivity;
 import nl.flarb.crisis.R;
 import nl.flarb.crisis.communication.Commands.Command;
@@ -22,6 +24,7 @@ public class ConnectionService extends Service {
 	public static final String CONNECTED = "nl.flarb.crisis.ConnectionService.CONNECTED";
 	public static final String CONNECT_FAILED = "nl.flarb.crisis.ConnectionService.CONNECT_FAILED";
 	public static final String WHY = "nl.flarb.crisis.ConnectionService.WHY";
+	public static final String ENVIRONMENT_CHANGED = "nl.flarb.crisis.ConnectionService.ENVIRONMENT_CHANGED";
 	
 	public static Boolean bind(Context ctx, ConnectionServiceConnector conn)
     {
@@ -65,7 +68,7 @@ public class ConnectionService extends Service {
 	@Override
 	public void onStart(Intent intent, int startid)
 	{
-		if(intent == null) {
+		if(intent == null || intent.getExtras() == null) {
 			stopSelf();
 		}
 		_connect(intent.getExtras().getString("host"), intent.getExtras().getInt("port"));
@@ -74,25 +77,35 @@ public class ConnectionService extends Service {
 
 	private void showNotification()
 	{
-		PendingIntent content = PendingIntent.getActivity(this, 0,
-				new Intent(this, OverviewActivity.class), 0);
+
 		notification_builder = new NotificationCompat.Builder(this);
 		notification_builder
 			.setSmallIcon(R.drawable.ic_launcher)
 			.setWhen(System.currentTimeMillis())
 			.setAutoCancel(false)
-			.setContentIntent(content);
-		_set_notification_text("CRISIS");
+			.setContentTitle("CRISIS");
 	}
 	
-	private void _set_notification_text(String msg)
+	private void set_connecting()
 	{
+		PendingIntent content = PendingIntent.getActivity(this, 0,
+				new Intent(this, ConnectActivity.class), 0);
 		Notification nf = notification_builder
-			.setContentText(msg)
-			.setContentTitle(msg)
+			.setContentText("CRISIS Connecting..")
+			.setContentIntent(content)
 			.build();
 		nm.notify(R.string.online_notification, nf);
-		
+	}
+	
+	private void set_connected()
+	{
+		PendingIntent content = PendingIntent.getActivity(this, 0,
+				new Intent(this, OverviewActivity.class), 0);
+		Notification nf = notification_builder
+			.setContentText("CRISIS Connected")
+			.setContentIntent(content)
+			.build();
+		nm.notify(R.string.online_notification, nf);	
 	}
 	
 	
@@ -104,6 +117,8 @@ public class ConnectionService extends Service {
 	
 	private NotificationManager nm;
 	private NotificationCompat.Builder notification_builder = null;
+	
+	public Commands.Environment environment = null;
 	
 	private class ConnectionThread extends Thread
 	{
@@ -117,7 +132,7 @@ public class ConnectionService extends Service {
 		public void run()
 		{
 			socket = new Socket();
-			_set_notification_text("CRISIS Connecting..");
+			set_connecting();
 			try {
 				socket.connect(new InetSocketAddress(ConnectionService.this.host, 
 													 ConnectionService.this.port));
@@ -129,7 +144,7 @@ public class ConnectionService extends Service {
 				disconnect();
 				return;
 			}
-			_set_notification_text("CRISIS Connected");
+			set_connected();
 			sendBroadcast(new Intent(CONNECTED));
 
 			byte[] h_buf = new byte[5];
@@ -199,7 +214,14 @@ public class ConnectionService extends Service {
 	
 	private void _received_command(Command cmd)
 	{
+		switch(cmd.getType().getNumber()) {
+			case Command.Type.Environment_VALUE:
+				environment = cmd.getEnv();
+				break;
+		}
 		
+		Intent i = new Intent(ENVIRONMENT_CHANGED);
+		sendBroadcast(i);
 	}
 
 	public void sendCommand(String c)

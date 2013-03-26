@@ -9,7 +9,6 @@ import nl.flarb.crisis.communication.ConnectionServiceConnector;
 
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,16 +23,16 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-public class ConnectActivity extends Activity {
+public class ConnectActivity extends CRISISActivity {
 	public static String CONNECT_PREFS = "ConnectPrefs";
 	public static String CONNECT_PREF_IP = "IP";
 
 	private static final int _default_port = 1337;
 	
-	Button b_connect;
-	EditText ip;
+	private Button b_connect;
+	private EditText ip;
 	
-	PopupWindow connecting_popup;
+	private PopupWindow connecting_popup;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,5 +131,6 @@ public class ConnectActivity extends Activity {
     	if(conn.service != null) {
     		conn.service.disconnect();
     	}
+		overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 	}
 }

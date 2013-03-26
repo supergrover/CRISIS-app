@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/connect_root"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,19 +8,30 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".OverviewActivity" >
+    tools:context=".ProgramNewActivity" >
 
     <Button
-        android:id="@+id/overview_configure_task"
+        android:id="@+id/button_program_tour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Configure task" />
+        android:text="Tour" />
 
-    <nl.flarb.crisis.CRISISEnvironmentDisplay
-        android:id="@+id/environment_display"
+    <Button
+        android:id="@+id/button_program_navigate"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.38" />
+        android:layout_height="wrap_content"
+        android:text="Navigate" />
+
+    <Button
+        android:id="@+id/button_program_find_damaged"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Find damaged" />
+    
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <include
         android:id="@+id/footer"

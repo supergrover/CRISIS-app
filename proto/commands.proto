@@ -21,8 +21,8 @@ message Program {
 };
 
 message Position {
-    required float x = 1;
-    required float y = 2;
+    required uint32 x = 1;
+    required uint32 y = 2;
 };
 
 message Environment {
@@ -36,8 +36,15 @@ message Environment {
         required Position pos = 2;
         optional float size = 3 [default = 1.0];
     }
+
+    message Crisis {
+        required Position pos = 1;
+        required float rotation = 2;
+    }
+
     repeated Element elements = 1;
-    required Position crisis = 2;
+    required Crisis crisis = 2;
+    required Position field_size = 3;
 };
 
 message Header {
@@ -50,6 +57,7 @@ message Command {
         StartProgram = 2;
         Environment = 3;
         RestartROS = 4;
+        AbortProgram = 5;
     };
 
     required Type type = 1;

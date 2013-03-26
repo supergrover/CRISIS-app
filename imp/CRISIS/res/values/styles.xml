@@ -13,8 +13,13 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+	
+    <style name="PushLeft.Activity" parent="@android:style/Animation.Activity"> 
+       <item name="android:windowEnterAnimation">@anim/push_left_in</item>
+       <item name="android:windowExitAnimation">@anim/push_left_out</item>
     </style>
-
+    
+    <style name="AppTheme" parent="AppBaseTheme">
+       <!--<item name="android:windowAnimationStyle">@style/PushLeft.Activity</item>-->
+    </style>
 </resources>

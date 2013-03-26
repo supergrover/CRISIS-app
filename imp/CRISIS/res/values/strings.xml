@@ -6,5 +6,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_overview">OverviewActivity</string>
     <string name="online_notification">nl.flarb.crisis.ConnectionService.ONLINE</string>
+    <string name="title_activity_program">ProgramActivity</string>
+    <string name="title_activity_program_tour">ProgramTourActivity</string>
+    <string name="title_activity_program_new">ProgramNewActivity</string>
+    <string name="title_activity_program_navigate">ProgramNavigateActivity</string>
+    <string name="title_activity_program_find_damaged">ProgramFindDamagedActivity</string>
 
 </resources>

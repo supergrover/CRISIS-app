@@ -13,34 +13,42 @@ server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server.bind(('', 1337))
 server.listen(5)
 
-env = Environment()
-env.crisis.x = 10;
-env.crisis.y = 10;
-env.elements.extend([Environment.Element(
-                    size = 0.5,
-                    pos = Position(x = int(random.random()*fieldsize[0]), 
-                                            y = int(random.random()*fieldsize[1])),
-                    type = Environment.Element.Sunflower)])
+def randpos(pos = None):
+    if pos:
+        pos.x = int(random.random() * fieldsize[0]);
+        pos.y = int(random.random() * fieldsize[1]);
+
+    return Position(x = int(random.random() * fieldsize[0]),
+                    y = int(random.random() * fieldsize[1]))
+
+
+def gen_environment():
+    env = Environment()
+    randpos(env.crisis.pos);
+    env.crisis.rotation = random.random()*360;
+    for x in range(1, 20):
+        env.elements.extend([Environment.Element(
+                                size = random.random(),
+                                pos = randpos(),
+                                type = Environment.Element.Sunflower)])
+    env.field_size.x = fieldsize[0]
+    env.field_size.y = fieldsize[1]
+    return env
 
 clients = []
 
-try:
-    while True:
-        (client, address) = server.accept()
-        print('Client')
-        cmd = Command(type=Command.Environment, env=env)
-        buf = cmd.SerializeToString()
+while True:
+    (client, address) = server.accept()
+    print('Client')
+    cmd = Command(type=Command.Environment, env=gen_environment())
+    buf = cmd.SerializeToString()
 
-        hdr = Header(size=len(buf)).SerializeToString()
+    hdr = Header(size=len(buf)).SerializeToString()
 
-        client.send(hdr + buf)
+    client.send(hdr + buf)
 
-        clients.append(client)
+    clients.append(client)
 
-        #client.shutdown(socket.SHUT_RDWR)
-        #client.close()
-except Exception as e:
-    server.shutdown(socket.SHUT_RDWR)
-    server.close()
-    raise e
+    #client.shutdown(socket.SHUT_RDWR)
+    #client.close()
 
