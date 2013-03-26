@@ -34,7 +34,7 @@ message Environment {
         };
         required Type type = 1;
         required Position pos = 2;
-        optional float size = 3;
+        optional float size = 3 [default = 1.0];
     }
     repeated Element elements = 1;
     required Position crisis = 2;
