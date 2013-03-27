@@ -1,0 +1,103 @@
+Description
+
+
+The Command message
+
+Command is the root message.
+It's type can be one of the following options:
+
+    Shutdown
+App -> CRISIS
+The rest of the message should be left empty. As a result, the CRISIS vehicle
+should initiate a shutdown.
+
+    StartProgram
+App -> CRISIS
+The program field of the Command message should be filled out. As a result, 
+the CRISIS vehicle should start a new program, according to the Command.program 
+field.
+
+    Environment
+CRISIS -> App
+The env field of the Command message should be filled out. As a result,
+the app will be updated with the new environment details of the CRISIS vehicle.
+
+    RestartROS
+App -> CRISIS
+The rest of the message should be left empty. As a result, the ROS framework on
+the CRISIS vehicle will restart.
+
+    AbortProgram
+App -> CRISIS
+The rest of the message should be left empty. As a result, the currently running
+program (e.g. task) on the CRISIS vehicle will be aborted, and the vehicle will
+return to a neutral state.
+
+
+
+The Program message
+
+    This message contains program information.
+The program is one of three types: Tour, Navigate or FindDamaged.
+The type field of the Program message should indicate what kind of program is
+described. This can be one of three options:
+
+    Tour
+The Program.steps field should contain one step, which should indicate the 
+direction of the first turn to take. This means the vehicle should turn either
+Left or Right at the upcoming headland.
+
+    Navigate
+The Program.steps field should contain every step to take during the program.
+Every step consists of a direction and a 'nth' field. The 'direction' indicates
+the direction of the step, the 'nth' field indicates the amount of opportunities
+to skip. This means a Step wiith the nth field set to 3 and the direction field
+set to Left, equals the instruction '3rd left'.
+
+    FindDamaged
+The Program.steps field should be filled out equal to the Tour program. In this
+case, the CRISIS vehicle should start the detection of ill or damaged plants 
+program.
+
+
+
+
+
+
+The Environment message
+
+    This message describes environment information.
+It consists of three fields, 'elements', 'crisis' and 'field_size'.
+
+    The 'elements' field
+This field contains all the known elements on the field. This is a list of 
+messages of type Environment.Element.
+
+    The 'crisis' field
+This field describes the position of the CRISIS vehicle. It consists of two 
+subfields, 'pos' and 'rotation'. Pos indicates the position within the field,
+rotation indicates the rotation of the vehicle. Both fields are relative to an
+absolute arbitrary coordinate, determined by the CRISIS vehicle.
+
+    The 'field_size' field
+This field describes the size of the field described by the 'elements' and 
+'crisis' fields, and should indicate the size of the known area.
+
+
+The Environment.Element message
+    This message describes one environment element.
+The message consists of three fields:
+
+    The 'type' field
+This field indicates the type of element. The type can be one of three options,
+Sunflower, DeadSunflower or Weed.
+
+    The 'pos' field
+This field indicates the position of the element in the area described in the
+Environment.field_size field.
+
+    The 'size' field
+This field is optional and indicates the size of the flower. 1.0 Indicates a
+normal size. This field is meant for displaying purposes, and can be ignored.
+
+
