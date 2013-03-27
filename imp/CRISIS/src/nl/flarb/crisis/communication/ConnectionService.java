@@ -9,6 +9,7 @@ import nl.flarb.crisis.OverviewActivity;
 import nl.flarb.crisis.R;
 import nl.flarb.crisis.communication.Commands.Command;
 import nl.flarb.crisis.communication.Commands.Header;
+import nl.flarb.crisis.communication.Commands.Program;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -185,7 +186,7 @@ public class ConnectionService extends Service {
 		_connection_thread = new ConnectionThread();
 		_connection_thread.start();
 	}
-	
+
 	public void disconnect()
 	{	
 		if(_connection_thread != null) {
@@ -224,8 +225,9 @@ public class ConnectionService extends Service {
 		sendBroadcast(i);
 	}
 
-	public void sendCommand(String c)
+	public void sendCommand(Command cmd)
 	{
-		Toast.makeText(this, c, Toast.LENGTH_LONG*3).show();
+		Toast.makeText(this, String.format("Send message of length %d", cmd.getSerializedSize()), 
+				Toast.LENGTH_LONG*3).show();
 	}
 }

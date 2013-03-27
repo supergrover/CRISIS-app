@@ -14,7 +14,7 @@
         android:id="@+id/overview_configure_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Configure task" />
+        android:text="Program" />
 
     <nl.flarb.crisis.CRISISEnvironmentDisplay
         android:id="@+id/environment_display"

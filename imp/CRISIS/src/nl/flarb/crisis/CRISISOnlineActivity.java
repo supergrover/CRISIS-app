@@ -5,6 +5,7 @@ import android.view.View;
 
 public abstract class CRISISOnlineActivity extends CRISISActivity {
 	public final static int RC_DISCONNECTED = 1;
+	public final static int RC_OK = 2;
 	
 	public void onDisconnectClicked(View v)
 	{
