@@ -1,8 +1,10 @@
 Description
 
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 The Command message
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Command is the root message.
 It's type can be one of the following options:
 
@@ -35,8 +37,11 @@ return to a neutral state.
 
 
 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 The Program message
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     This message contains program information.
 The program is one of three types: Tour, Navigate or FindDamaged.
 The type field of the Program message should indicate what kind of program is
@@ -64,8 +69,10 @@ program.
 
 
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 The Environment message
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     This message describes environment information.
 It consists of three fields, 'elements', 'crisis' and 'field_size'.
 
@@ -84,7 +91,12 @@ This field describes the size of the field described by the 'elements' and
 'crisis' fields, and should indicate the size of the known area.
 
 
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 The Environment.Element message
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     This message describes one environment element.
 The message consists of three fields:
 
