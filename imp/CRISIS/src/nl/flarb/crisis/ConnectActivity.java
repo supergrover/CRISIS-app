@@ -1,4 +1,3 @@
-
 package nl.flarb.crisis;
 
 import java.util.regex.Pattern;
@@ -34,6 +33,9 @@ public class ConnectActivity extends CRISISActivity {
 	
 	private PopupWindow connecting_popup;
 	
+    private ConnectionServiceConnector conn = null;
+    
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +47,8 @@ public class ConnectActivity extends CRISISActivity {
 				getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         connecting_popup = new PopupWindow(
         		inf.inflate(R.layout.popup_connecting, null, false),
-        		100, 100,
+        		200, 200,
         		true);
-		
         
         b_connect = (Button)findViewById(R.id.connect_button);
         ip = (EditText)findViewById(R.id.connect_ip);
@@ -82,7 +83,10 @@ public class ConnectActivity extends CRISISActivity {
     	super.onDestroy();
     	unregisterReceiver(_connected);
     	unregisterReceiver(_connect_failed);
-    	ConnectionService.unbind(this, conn);
+    	if(conn != null) {
+    		ConnectionService.unbind(this, conn);
+    		conn = null;
+    	}
     }
     
     private BroadcastReceiver _connected = new BroadcastReceiver()
@@ -114,7 +118,10 @@ public class ConnectActivity extends CRISISActivity {
     	ci.putExtra("host", host);
     	ci.putExtra("port", port);
     	startService(ci);
-        ConnectionService.bind(this, conn);
+    	if(conn != null) {
+    		conn = new ConnectionServiceConnector();
+    		ConnectionService.bind(this, conn);
+    	}
     }
     
     private Boolean isValidIP(String s)
@@ -122,15 +129,10 @@ public class ConnectActivity extends CRISISActivity {
     	return Pattern.matches("([0-9]{1,3}[.]){3}([0-9]{1,3})", s);
     }
 
-    private ConnectionServiceConnector conn = new ConnectionServiceConnector();
-    
     @Override
 	public void onRestart()
 	{
     	super.onRestart();
-    	if(conn.service != null) {
-    		conn.service.disconnect();
-    	}
 		overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 	}
 }

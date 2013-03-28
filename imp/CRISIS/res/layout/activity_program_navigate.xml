@@ -35,13 +35,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Left" />
+                android:text="Left"
+                style="@style/RadioButtonStyle"  />
 
             <RadioButton
                 android:id="@+id/program_navigate_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Right" />
+                android:text="Right"
+                style="@style/RadioButtonStyle"  />
         </RadioGroup>
 
         <Button
@@ -50,35 +52,6 @@
             android:layout_height="wrap_content"
             android:text="Add" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/program_navigate_up"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:background="@android:drawable/arrow_up_float"
-            android:enabled="false" />
-
-        <Button
-            android:id="@+id/program_navigate_down"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:background="@android:drawable/arrow_down_float"
-            android:enabled="false" />
-
-        <Button
-            android:id="@+id/program_navigate_delete"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:background="@android:drawable/ic_delete"
-            android:enabled="false" />
     </LinearLayout>
 
     <ListView

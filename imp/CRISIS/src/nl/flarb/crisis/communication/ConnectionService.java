@@ -71,6 +71,7 @@ public class ConnectionService extends Service {
 	{
 		if(intent == null || intent.getExtras() == null) {
 			stopSelf();
+			return;
 		}
 		_connect(intent.getExtras().getString("host"), intent.getExtras().getInt("port"));
 	}

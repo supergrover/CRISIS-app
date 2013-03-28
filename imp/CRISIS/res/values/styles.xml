@@ -13,13 +13,13 @@
     </style>
 
     <!-- Application theme. -->
-	
-    <style name="PushLeft.Activity" parent="@android:style/Animation.Activity"> 
-       <item name="android:windowEnterAnimation">@anim/push_left_in</item>
-       <item name="android:windowExitAnimation">@anim/push_left_out</item>
-    </style>
     
     <style name="AppTheme" parent="AppBaseTheme">
-       <!--<item name="android:windowAnimationStyle">@style/PushLeft.Activity</item>-->
+        <item name="android:background">@drawable/background</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+    
+    <style name="RadioButtonStyle">
+        <item name="android:textColor">@color/White</item>
     </style>
 </resources>

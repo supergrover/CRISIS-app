@@ -10,7 +10,7 @@ public class ConnectionServiceConnector implements ServiceConnection {
 	public void onServiceConnected(ComponentName name, IBinder binder) 
 	{
 		service = ((ConnectionService.ConnectionServiceBinder)binder).getService();
-		connected();
+		connected(service);
 	}
 
 	@Override
@@ -19,10 +19,10 @@ public class ConnectionServiceConnector implements ServiceConnection {
 		disconnected();
 	}
 
-	public void connected()
+	protected void connected(ConnectionService service)
 	{
 	}
-	public void disconnected()
+	protected void disconnected()
 	{
 	}
 }

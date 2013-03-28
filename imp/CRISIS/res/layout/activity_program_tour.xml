@@ -39,13 +39,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Left" />
+                android:text="Left" 
+                style="@style/RadioButtonStyle"/>
 
             <RadioButton
                 android:id="@+id/program_tour_first_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Right" />
+                android:text="Right" 
+                style="@style/RadioButtonStyle" />
         </RadioGroup>
 
     </LinearLayout>
